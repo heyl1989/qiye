@@ -1,5 +1,4 @@
 {include file='public/header'/}
-
 <body style="background-color: #393D49">
 <div class="x-box">
     <div class="x-top">
@@ -26,8 +25,8 @@
                         <i class="layui-icon">&#xe612;</i>
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="username" name="username" required="" lay-verify="username"
-                               autocomplete="off" placeholder="username" class="layui-input">
+                        <input type="text" id="username" name="username" required="" placeholder="username"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item x-login-box">
@@ -35,12 +34,12 @@
                         <i class="layui-icon">&#xe628;</i>
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="pass" name="pass" required="" lay-verify="pass"
-                               autocomplete="off" placeholder="******" class="layui-input">
+                        <input type="password" id="pass" name="password" required="" placeholder="******"
+                               class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" id="loginbtn">
-                    <button class="layui-btn" lay-filter="save" lay-submit="">
+                    <button type="button" id="loginbtn" class="layui-btn" lay-filter="save" lay-submit="">
                         登 录
                     </button>
                 </div>
@@ -48,34 +47,56 @@
         </div>
     </div>
 </div>
-<script src="_STATIC__/lib/layui/layui.js" charset="utf-8">
-</script>
+<!--<script src="_STATIC__/lib/layui/layui.js" charset="utf-8">-->
+<!--</script>-->
+<!--<script>-->
+<!--layui.use(['form'],-->
+<!--function () {-->
+<!--$ = layui.jquery;-->
+<!--var form = layui.form(),-->
+<!--layer = layui.layer;-->
+
+<!--$('.x-login-right li').click(function (event) {-->
+<!--color = $(this).attr('color');-->
+<!--$('body').css('background-color', color);-->
+<!--});-->
+
+<!--//监听提交-->
+<!--// form.on('submit(save)',-->
+<!--//     function (data) {-->
+<!--//         console.log(data);-->
+<!--//         layer.alert(JSON.stringify(data.field), {-->
+<!--//             title: '最终的提交信息'-->
+<!--//         }, function () {-->
+<!--//             location.href = "./index.html";-->
+<!--//         })-->
+<!--//         return false;-->
+<!--//     });-->
+
+<!--});-->
+
+<!--</script>-->
+{include file='public/base_js'/}
 <script>
-    layui.use(['form'],
-        function () {
-            $ = layui.jquery;
-            var form = layui.form(),
-                layer = layui.layer;
-
-            $('.x-login-right li').click(function (event) {
-                color = $(this).attr('color');
-                $('body').css('background-color', color);
+    $(function () {
+        $('#loginbtn').on('click', function () {
+            $.ajax({
+                type: "post",
+                url: "{:url('login/check')}",
+                data: $(".layui-form").serialize(),
+                dataTypes: "json",
+                success: function (data) {
+                    if (data.status == 1) {
+                        alert(data.message);
+                        window.location.href = "{:url('index/index')}";
+                    } else {
+                        alert(data.message);
+                        window.location.href = "{:url('login/index')}";
+                    }
+                }
             });
-
-            //监听提交
-            form.on('submit(save)',
-                function (data) {
-                    console.log(data);
-                    layer.alert(JSON.stringify(data.field), {
-                        title: '最终的提交信息'
-                    }, function () {
-                        location.href = "./index.html";
-                    })
-                    return false;
-                });
-
         });
-
+    })
 </script>
 </body>
 
