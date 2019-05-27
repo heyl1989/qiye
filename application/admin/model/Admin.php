@@ -12,4 +12,10 @@ class Admin extends Model
         return date('Y/m/d H:i:s', $val);
     }
 
+    //创建修改器，将密码自动MD5加密
+    public function setPasswordAttr($val)
+    {
+        return md5($val);
+    }
+
 }
