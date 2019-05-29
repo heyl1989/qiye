@@ -50,13 +50,13 @@
                             <span class="x-red">*</span>是否开启
                         </label>
                         <div class="layui-input-block">
-                            <select name="" id="">
+                            <select name="is_close" id="">
                                 {eq name="$system->is_close" value="0"}
                                 <option value="0" selected>开启网站</option>
                                 <option value="1">关闭网站</option>
                                 {else/}
-                                <option value="1">关闭网站</option>
-                                <option value="0" selected>开启网站</option>
+                                <option value="1" selected>关闭网站</option>
+                                <option value="0">开启网站</option>
                                 {/eq}
                             </select>
                         </div>
