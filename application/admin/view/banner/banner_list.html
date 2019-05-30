@@ -12,7 +12,7 @@
 </div>
 <div class="x-body">
     <xblock>
-        <button class="layui-btn" onclick="banner_add('添加轮播','{:url("create")}','600','500')"><i class="layui-icon">&#xe608;</i>添加
+        <button class="layui-btn" onclick="banner_add('添加轮播','600','500')"><i class="layui-icon">&#xe608;</i>添加
         </button>
         <span class="x-right" style="line-height:40px">共有数据：{$count} 条</span></xblock>
     <table class="layui-table">
@@ -51,9 +51,9 @@
                 {$vo.desc}
             </td>
             <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="banner_edit('编辑','{:url("edit")}'+'?id='+{$vo.id},'4','','510')"
-                class="ml-5" style="text-decoration:none">
-                <i class="layui-icon">&#xe642;</i>
+                <a title="编辑" href="javascript:;" onclick="banner_edit('编辑','{$vo.id}','','510')"
+                   class="ml-5" style="text-decoration:none">
+                    <i class="layui-icon">&#xe642;</i>
                 </a>
                 <a title="删除" href="javascript:;" onclick="banner_del(this,'{$vo.id}')"
                    style="text-decoration:none">
@@ -88,13 +88,13 @@
     });
 
     /*添加*/
-    function banner_add(title, url, w, h) {
-        x_admin_show(title, url, w, h);
+    function banner_add(title, w, h) {
+        x_admin_show(title, '{:url("create")}', w, h);
     }
 
     // 编辑
-    function banner_edit(title, url, id, w, h) {
-        x_admin_show(title, url, w, h);
+    function banner_edit(title, id, w, h) {
+        x_admin_show(title, '{:url("edit")}' + '?id=' + id, w, h);
     }
 
     /*删除*/
