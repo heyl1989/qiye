@@ -72,11 +72,11 @@
                 {$vo.cate_name}
             </td>
             <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','cate-edit.html','4','','510')"
-                   class="ml-5" style="text-decoration:none">
-                    <i class="layui-icon">&#xe642;</i>
+                <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','{:url("edit")}'+'?id='+{$vo.id},'4','','510')"
+                class="ml-5" style="text-decoration:none">
+                <i class="layui-icon">&#xe642;</i>
                 </a>
-                <a title="删除" href="javascript:;" onclick="cate_del(this,'1')"
+                <a title="删除" href="javascript:;" onclick="cate_del(this,'{$vo.id}')"
                    style="text-decoration:none">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
@@ -102,13 +102,16 @@
             $.post("{:url('create')}", data.field, function (res) {
                 if (res.status == 1) {
                     layer.alert(res.message, {icon: 6});
-                    $('#x-link').prepend('<tr>' +
-                        '<td><input type="checkbox"value="1"name=""></td>' +
-                        '<td>res.id</td>' +
-                        '<td>res.cate_order</td>' +
-                        '<td>res.cate_name</td>' +
-                        '<td class="td-manage"><a title="编辑"href="javascript:;"onclick="cate_edit(\'编辑\',\'cate-edit.html\',\'4\',\'\',\'510\')"class="ml-5"style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a><a title="删除"href="javascript:;"onclick="cate_del(this,\'1\')"style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a></td>' +
-                        '</tr>');
+                    // $('#x-link').prepend('<tr>' +
+                    //     '<td><input type="checkbox"value="1"name=""></td>' +
+                    //     '<td>res.id</td>' +
+                    //     '<td>res.cate_order</td>' +
+                    //     '<td>res.cate_name</td>' +
+                    //     '<td class="td-manage"><a title="编辑"href="javascript:;"onclick="cate_edit(\'编辑\',\'cate-edit.html\',\'4\',\'\',\'510\')"class="ml-5"style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a><a title="删除"href="javascript:;"onclick="cate_del(this,\'1\')"style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a></td>' +
+                    //     '</tr>');
+                    setTimeout(function () {
+                        window.location.replace(location.href);
+                    }, 2000);
                 } else {
                     layer.alert(res.message, {icon: 6});
                 }
@@ -137,6 +140,7 @@
     function cate_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
+            $.get("{:url('delete')}",{id:id});
             $(obj).parents("tr").remove();
             layer.msg('已删除!', {icon: 1, time: 1000});
         });
