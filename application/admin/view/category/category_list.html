@@ -40,7 +40,6 @@
         <thead>
         <tr>
             <th>
-                <input type="checkbox" name="" value="">
             </th>
             <th>
                 ID
@@ -60,7 +59,7 @@
         {volist name="cate_list" id="vo" empty="暂时没有数据"}
         <tr>
             <td>
-                <input type="checkbox" value="1" name="">
+                <input type="checkbox" value="{$vo.id}" name="rights" >
             </td>
             <td>
                 {$vo.id}
@@ -72,9 +71,9 @@
                 {$vo.cate_name}
             </td>
             <td class="td-manage">
-                <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','{:url("edit")}'+'?id='+{$vo.id},'4','','510')"
-                class="ml-5" style="text-decoration:none">
-                <i class="layui-icon">&#xe642;</i>
+                <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','{$vo.id}','','510')"
+                   class="ml-5" style="text-decoration:none">
+                    <i class="layui-icon">&#xe642;</i>
                 </a>
                 <a title="删除" href="javascript:;" onclick="cate_del(this,'{$vo.id}')"
                    style="text-decoration:none">
@@ -127,20 +126,29 @@
     function delAll() {
         layer.confirm('确认要删除吗？', function (index) {
             //捉到所有被选中的，发异步进行删除
+            var checkbox = document.getElementsByName('rights');
+            for(var i = 0; i < checkbox.length; i++){
+                if(checkbox[i].checked){
+                    $.get("{:url('delete')}", {id: checkbox[i].value});
+                }
+            }
+            setTimeout(function () {
+                window.location.replace(location.href);
+            },2000);
             layer.msg('删除成功', {icon: 1});
         });
     }
 
     //-编辑
-    function cate_edit(title, url, id, w, h) {
-        x_admin_show(title, url, w, h);
+    function cate_edit(title, id, w, h) {
+        x_admin_show(title, '{:url("edit")}' + '?id=' + id, w, h);
     }
 
     /*-删除*/
     function cate_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
-            $.get("{:url('delete')}",{id:id});
+            $.get("{:url('delete')}", {id: id});
             $(obj).parents("tr").remove();
             layer.msg('已删除!', {icon: 1, time: 1000});
         });
