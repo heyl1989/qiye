@@ -38,8 +38,10 @@
     </div>
     <div class="layui-carousel imgbox" id="test1">
         <div carousel-item class="imgH">
-            <div><img style="width: 100%" src="/static/index/images/sy_banner1.jpg"></div>
-            <div><img style="width: 100%" src="/static/index/images/sy_banner1.jpg"></div>
+            {volist name="banner" id="vo"}
+            <div><img style="width: 100%" src="__ROOT__/uploads/{$vo.image}"></div>
+            <!--<div><img style="width: 100%" src="/static/index/images/sy_banner1.jpg"></div>-->
+            {/volist}
         </div>
     </div>
     <div class="prod-show">
