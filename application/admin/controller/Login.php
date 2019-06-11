@@ -30,6 +30,7 @@ class Login extends Base
         $data = $request->param();
         $userName = $data['username'];
         $passWord = md5($data['password']);
+        $code = strtolower($data['code']);
         //在admin表中进行查询，以用户名为条件
         $map = ['username' => $userName];
         $admin = Admin::get($map);
@@ -42,6 +43,8 @@ class Login extends Base
         } elseif ($admin->password != $passWord) {
             //设置密码不正确的提示语
             $message = '密码不正确';
+        } else if ($code != $_SESSION['code']) {
+            $message = '验证码'.$code.'不正确'.$_SESSION['code'];
         } else {
             //如果用户名和密码都通过了验证，表明该用户是合法用户
             //修改返回信息
