@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use think\Route;
-//Route::rule('testApi', 'app/Index/getTestData');
+Route::rule('testApi', 'app/Index/getTestData');
 
 return [
 
