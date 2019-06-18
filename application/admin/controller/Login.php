@@ -14,6 +14,9 @@ class Login extends Base
      */
     public function index()
     {
+        echo "__ROOT__";
+        echo "__STATIC__";
+        exit();
         $this->alreadyLogin();
         return $this->view->fetch('login');
     }
