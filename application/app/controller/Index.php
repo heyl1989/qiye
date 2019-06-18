@@ -2,13 +2,14 @@
 
 namespace app\app\controller;
 
+use app\admin\model\Banner;
 use think\Controller;
 
 class Index extends Controller
 {
     public function getTestData()
     {
-        if (!$this->request->isGet()) {
+        if ($this->request->isGet()) {
             $msg = "请求方式错误";
             $data = "请用GET请求";
             $header = null;
@@ -24,5 +25,11 @@ class Index extends Controller
             'header' => $header
         );
         print json_encode($result);
+    }
+
+    public function getBanner()
+    {
+        $banner = Banner::all();
+        print json_encode($banner);
     }
 }

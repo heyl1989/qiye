@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 use think\Route;
 Route::rule('testApi', 'app/Index/getTestData');
-
+Route::rule('getBanner', 'app/Index/getBanner');
 return [
 
     '__pattern__' => [
