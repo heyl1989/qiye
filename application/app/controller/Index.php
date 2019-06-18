@@ -8,7 +8,7 @@ class Index extends Controller
 {
     public function getTestData()
     {
-        if ($this->request->isGet()) {
+        if (!$this->request->isGet()) {
             $msg = "请求方式错误";
             $data = "请用GET请求";
             $header = null;
