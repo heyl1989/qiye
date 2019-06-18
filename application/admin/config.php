@@ -3,6 +3,6 @@
 return [
     // 视图输出字符串内容替换
     'view_replace_str' => [
-        '__STATIC__' => '/qiye/public/static/admin',
+        '__STATIC__' => '__ROOT__/static/admin',
     ],
 ];
