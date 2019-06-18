@@ -30,6 +30,11 @@ class Index extends Controller
     public function getBanner()
     {
         $banner = Banner::all();
-        print json_encode($banner);
+        $result = array(
+            'flag' => 'Success',
+            'msg' => "请求成功",
+            'data' => $banner,
+        );
+        print json_encode($result);
     }
 }
