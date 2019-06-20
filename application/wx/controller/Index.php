@@ -68,7 +68,7 @@ class Index
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
         //extract post data
-        if (!empty($postStr)){
+        if (!empty($postStr)) {
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
                the best way is to check the validity of xml by yourself */
             libxml_disable_entity_loader(true);
@@ -86,7 +86,7 @@ class Index
 							<Content><![CDATA[%s]]></Content>
 							<FuncFlag>0</FuncFlag>
 							</xml>";
-            if($event == "subscribe"){
+            if ($event == "subscribe") {
                 $textTpl = "<xml>
 					<ToUserName><![CDATA[%s]]></ToUserName>
 					<FromUserName><![CDATA[%s]]></FromUserName>
@@ -102,20 +102,18 @@ class Index
 					</item>
 					</Articles>
 					</xml>";
-
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time);
                 echo $resultStr;
             }
-            if(!empty( $keyword ))
-            {
+            if (!empty($keyword)) {
                 $msgType = "text";
                 $contentStr = "Hello World!";
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
-            }else{
+            } else {
                 echo "Input something...";
             }
-        }else {
+        } else {
             echo "";
             exit;
         }
