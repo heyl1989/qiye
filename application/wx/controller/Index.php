@@ -22,22 +22,28 @@ class Index
         if ($_GET['echostr']) {
             $echoStr = $_GET["echostr"];
             //valid signature , option
-            if ($this->checkSignature()) {
-                echo $echoStr;
-                exit;
+            try {
+                if ($this->checkSignature()) {
+                    echo $echoStr;
+                    exit;
+                }
+            } catch (Exception $e) {
             }
         } else {
-//            $wechatObj->responseMsg();
+            $this->responseMsg();
         }
     }
 
+    /**检查服务器配置
+     * @return bool
+     * @throws Exception
+     */
     private function checkSignature()
     {
         // you must define TOKEN by yourself
         if (!defined("TOKEN")) {
             throw new Exception('TOKEN is not defined!');
         }
-
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -56,43 +62,62 @@ class Index
         }
     }
 
-    public function demo()
+    private function responseMsg()
     {
-        // 第三方发送消息给公众平台
-        $encodingAesKey = "c6nuOgXi3TbZlOl52zyph32ERu750NJ4cr8yLdHTeCa";
-        $token = "yongdengbang";
-        $timeStamp = "1409304348";
-        $nonce = "xxxxxx";
-        $appId = "wxb11529c136998cb6";
-        $text = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName><![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]></MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description></Video></xml>";
+        //get post data, May be due to the different environments
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
+        //extract post data
+        if (!empty($postStr)){
+            /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
+               the best way is to check the validity of xml by yourself */
+            libxml_disable_entity_loader(true);
+            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $fromUsername = $postObj->FromUserName;
+            $toUsername = $postObj->ToUserName;
+            $keyword = trim($postObj->Content);
+            $event = $postObj->Event;
+            $time = time();
+            $textTpl = "<xml>
+							<ToUserName><![CDATA[%s]]></ToUserName>
+							<FromUserName><![CDATA[%s]]></FromUserName>
+							<CreateTime>%s</CreateTime>
+							<MsgType><![CDATA[%s]]></MsgType>
+							<Content><![CDATA[%s]]></Content>
+							<FuncFlag>0</FuncFlag>
+							</xml>";
+            if($event == "subscribe"){
+                $textTpl = "<xml>
+					<ToUserName><![CDATA[%s]]></ToUserName>
+					<FromUserName><![CDATA[%s]]></FromUserName>
+					<CreateTime>%s</CreateTime>
+					<MsgType><![CDATA[news]]></MsgType>
+					<ArticleCount>1</ArticleCount>
+					<Articles>
+					<item>
+					<Title><![CDATA[欢迎来我的公众号]]></Title> 
+					<Description><![CDATA[我的学习，第一个]]></Description>
+					<PicUrl><![CDATA[http://img.taopic.com/uploads/allimg/140729/240450-140HZP45790.jpg]]></PicUrl>
+					<Url><![CDATA[https://www.baidu.com/]]></Url>
+					</item>
+					</Articles>
+					</xml>";
 
-        $pc = new WXBizMsgCrypt($token, $encodingAesKey, $appId);
-        $encryptMsg = '';
-        $errCode = $pc->encryptMsg($text, $timeStamp, $nonce, $encryptMsg);
-        if ($errCode == 0) {
-            print("加密后: " . $encryptMsg . "\n");
-        } else {
-            print($errCode . "\n");
-        }
-
-        $xml_tree = new DOMDocument();
-        $xml_tree->loadXML($encryptMsg);
-        $array_e = $xml_tree->getElementsByTagName('Encrypt');
-        $array_s = $xml_tree->getElementsByTagName('MsgSignature');
-        $encrypt = $array_e->item(0)->nodeValue;
-        $msg_sign = $array_s->item(0)->nodeValue;
-
-        $format = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%s]]></Encrypt></xml>";
-        $from_xml = sprintf($format, $encrypt);
-
-        // 第三方收到公众号平台发送的消息
-        $msg = '';
-        $errCode = $pc->decryptMsg($msg_sign, $timeStamp, $nonce, $from_xml, $msg);
-        if ($errCode == 0) {
-            print("解密后: " . $msg . "\n");
-        } else {
-            print($errCode . "\n");
+                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time);
+                echo $resultStr;
+            }
+            if(!empty( $keyword ))
+            {
+                $msgType = "text";
+                $contentStr = "Hello World!";
+                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                echo $resultStr;
+            }else{
+                echo "Input something...";
+            }
+        }else {
+            echo "";
+            exit;
         }
     }
 
