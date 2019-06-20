@@ -8,13 +8,12 @@
 
 namespace app\wx\controller;
 
-use app\wx\util\WXBizMsgCrypt;
 use think\Exception;
 
 class Index
 {
 
-    private $encodingAesKey = "da8d44a257a3df74d6795c462cf17ab2";
+    private $AppSecret = "da8d44a257a3df74d6795c462cf17ab2";
 
     public function index()
     {
@@ -78,14 +77,14 @@ class Index
             $keyword = trim($postObj->Content);
             $event = $postObj->Event;
             $time = time();
-            $textTpl = "<xml>
-							<ToUserName><![CDATA[%s]]></ToUserName>
-							<FromUserName><![CDATA[%s]]></FromUserName>
-							<CreateTime>%s</CreateTime>
-							<MsgType><![CDATA[%s]]></MsgType>
-							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
-							</xml>";
+            $textTpl = '<xml>'
+                . '<ToUserName><![CDATA[%s]]></ToUserName>'
+                . '<FromUserName><![CDATA[%s]]></FromUserName>'
+                . '<CreateTime>%s</CreateTime>'
+                . '<MsgType><![CDATA[%s]]></MsgType>'
+                . '<Content><![CDATA[%s]]></Content>'
+                . '<FuncFlag>0</FuncFlag>'
+                . '</xml>';
             if ($event == "subscribe") {
                 $textTpl = "<xml>
 					<ToUserName><![CDATA[%s]]></ToUserName>
