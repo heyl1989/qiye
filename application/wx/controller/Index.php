@@ -9,16 +9,55 @@
 namespace app\wx\controller;
 
 use app\wx\util\WXBizMsgCrypt;
+use think\Exception;
 
 class Index
 {
 
-    public function checkSignature()
+    private $encodingAesKey = "da8d44a257a3df74d6795c462cf17ab2";
+
+    public function index()
     {
-        $encodingAesKey = "da8d44a257a3df74d6795c462cf17ab2";
+        define("TOKEN", "yongdengbang");
+        if ($_GET['echostr']) {
+            $echoStr = $_GET["echostr"];
+            //valid signature , option
+            if ($this->checkSignature()) {
+                echo $echoStr;
+                exit;
+            }
+        } else {
+//            $wechatObj->responseMsg();
+        }
     }
 
-    public function demo(){
+    private function checkSignature()
+    {
+        // you must define TOKEN by yourself
+        if (!defined("TOKEN")) {
+            throw new Exception('TOKEN is not defined!');
+        }
+
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
+
+        $token = TOKEN;
+        $tmpArr = array($token, $timestamp, $nonce);
+        // use SORT_STRING rule
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode($tmpArr);
+        $tmpStr = sha1($tmpStr);
+
+        if ($tmpStr == $signature) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function demo()
+    {
         // 第三方发送消息给公众平台
         $encodingAesKey = "c6nuOgXi3TbZlOl52zyph32ERu750NJ4cr8yLdHTeCa";
         $token = "yongdengbang";
