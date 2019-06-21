@@ -18,9 +18,8 @@ class Index
     public function index()
     {
         define("TOKEN", "yongdengbang");
-        if ($_GET['echostr']) {
-            $echoStr = $_GET["echostr"];
-            //valid signature , option
+        $echoStr = $_GET["echostr"];
+        if (!is_null($echoStr)) {
             try {
                 if ($this->checkSignature()) {
                     echo $echoStr;
