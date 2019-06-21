@@ -63,8 +63,8 @@ class Index
     private function responseMsg()
     {
         //get post data, May be due to the different environments
-        $postStr = isset($GLOBALS["HTTP_RAW_POST_DATA"]) ? $GLOBALS["HTTP_RAW_POST_DATA"] : '';
-
+//        $postStr = isset($GLOBALS["HTTP_RAW_POST_DATA"]) ? $GLOBALS["HTTP_RAW_POST_DATA"] : '';
+        $postStr = file_get_contents("php://input");
         //extract post data
         if (!empty($postStr)) {
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
