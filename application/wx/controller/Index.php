@@ -112,7 +112,7 @@ class Index
                 echo "Input something...";
             }
         } else {
-            echo "";
+            echo "HTTP_RAW_POST_DATA EMPTY";
             exit;
         }
     }
