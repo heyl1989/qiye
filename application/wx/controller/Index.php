@@ -94,9 +94,9 @@ class Index
 					<Articles>
 					<item>
 					<Title><![CDATA[欢迎来我到甘肃永登]]></Title> 
-					<Description><![CDATA[永登，古称令居、庄浪，隶属于甘肃省兰州市]]></Description>
-					<PicUrl><![CDATA[https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=3b5cfebcce11728b24208470a995a8ab/908fa0ec08fa513dcccb1df33e6d55fbb2fbd9be.jpg]]></PicUrl>
-					<Url><![CDATA[https://baike.baidu.com/item/%E6%B0%B8%E7%99%BB%E5%8E%BF/3703858?fr=aladdin]]></Url>
+					<Description><![CDATA[我的学习，第一个]]></Description>
+					<PicUrl><![CDATA[http://img.taopic.com/uploads/allimg/140729/240450-140HZP45790.jpg]]></PicUrl>
+					<Url><![CDATA[https://www.baidu.com/]]></Url>
 					</item>
 					</Articles>
 					</xml>";
