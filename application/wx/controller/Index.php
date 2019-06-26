@@ -106,11 +106,12 @@ class Index
             }
             if (!empty($keyword)) {
                 $msgType = "text";
-                if (Str::contains("天气", [$keyword])) {
-                    $contentStr = "为您查询永登天气";
-                }else{
-                    $contentStr = "您好";
-                }
+                $contentStr = strval(Str::contains("天气", [$keyword]));
+//                if (Str::contains("天气", [$keyword])) {
+//                    $contentStr = "为您查询永登天气";
+//                }else{
+//                    $contentStr = "您好";
+//                }
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             } else {
