@@ -9,6 +9,7 @@
 namespace app\wx\controller;
 
 use think\Exception;
+use think\helper\Str;
 
 class Index
 {
@@ -105,7 +106,11 @@ class Index
             }
             if (!empty($keyword)) {
                 $msgType = "text";
-                $contentStr = "Hello World!";
+                if (Str::contains("天气", $keyword)) {
+                    $contentStr = "为您查询永登天气";
+                }else{
+                    $contentStr = "您好";
+                }
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             } else {
