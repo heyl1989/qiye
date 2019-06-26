@@ -96,7 +96,7 @@ class Index
 					<Title><![CDATA[欢迎来到甘肃永登]]></Title> 
 					<Description><![CDATA[永登，古称令居、庄浪，隶属于甘肃省兰州市]]></Description>
 					<PicUrl><![CDATA[http://img1.imgtn.bdimg.com/it/u=2572839016,2682225406&fm=214&gp=0.jpg]]></PicUrl>
-					<Url><![CDATA[https://baike.baidu.com/item/%E6%B0%B8%E7%99%BB%E5%8E%BF/3703858?fr=aladdin]]></Url>
+					<Url><![CDATA[https://baike.sogou.com/v118860.htm?fromTitle=%E6%B0%B8%E7%99%BB%E5%8E%BF&ch=sogou.city.vr]]></Url>
 					</item>
 					</Articles>
 					</xml>";
