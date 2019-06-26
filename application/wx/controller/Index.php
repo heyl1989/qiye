@@ -93,9 +93,9 @@ class Index
 					<ArticleCount>1</ArticleCount>
 					<Articles>
 					<item>
-					<Title><![CDATA[欢迎来我到甘肃永登]]></Title> 
-					<Description><![CDATA[我的学习，第一个]]></Description>
-					<PicUrl><![CDATA[http://img.taopic.com/uploads/allimg/140729/240450-140HZP45790.jpg]]></PicUrl>
+					<Title><![CDATA[欢迎来到甘肃永登]]></Title> 
+					<Description><![CDATA[永登，古称令居、庄浪，隶属于甘肃省兰州市]]></Description>
+					<PicUrl><![CDATA[http://img1.imgtn.bdimg.com/it/u=2572839016,2682225406&fm=214&gp=0.jpg]]></PicUrl>
 					<Url><![CDATA[https://www.baidu.com/]]></Url>
 					</item>
 					</Articles>
