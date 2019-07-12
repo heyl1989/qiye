@@ -108,7 +108,9 @@ class Index
                 $msgType = "text";
                 $contentStr = '您输入了：' . $keyword;
                 if (strpos($keyword, "天气") !== false) {
-                    $contentStr = '查询永登天气敬请期待！';
+//                    $contentStr = '查询永登天气敬请期待！';
+                    //https://www.kancloud.cn/ccjin/yingq/603579
+                    $contentStr = file_get_contents('https://www.tianqiapi.com/api/?version=v1&city=永登');
                 }
 //                if (Str::contains("天气", [$keyword])) {
 //                    $contentStr = "为您查询永登天气";
