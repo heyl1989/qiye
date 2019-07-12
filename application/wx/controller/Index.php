@@ -107,7 +107,7 @@ class Index
             if (!empty($keyword)) {
                 $msgType = "text";
                 $contentStr = '您输入了：' . $keyword;
-                if (strpos($keyword, "天气") != false) {
+                if (strpos($keyword, "天气") !== false) {
                     $contentStr = '查询永登天气敬请期待！';
                 }
 //                if (Str::contains("天气", [$keyword])) {
