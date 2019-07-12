@@ -106,7 +106,7 @@ class Index
             }
             if (!empty($keyword)) {
                 $msgType = "text";
-                $contentStr = strval(Str::contains("天气", [$keyword]));
+                $contentStr = '您输入了：' . $keyword;
 //                if (Str::contains("天气", [$keyword])) {
 //                    $contentStr = "为您查询永登天气";
 //                }else{
