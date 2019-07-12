@@ -119,7 +119,9 @@ class Index
                             . '今日温度：' . $weather->data[0]->tem2 . '~' . $weather->data[0]->tem1 . "\n"
                             . '天气状况：' . $weather->data[0]->wea . "\n"
                             . $weather->data[0]->air_tips;
-
+                        foreach ($weather->data[0]->index as $index) {
+                            $contentStr .= $index->title . "\n" . $index->level . "\n" . $index->desc . "\n";
+                        }
                     }
                 }
 //                if (Str::contains("天气", [$keyword])) {
