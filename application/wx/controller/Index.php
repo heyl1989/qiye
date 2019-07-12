@@ -120,7 +120,7 @@ class Index
                             . '天气状况：' . $weather->data[0]->wea . "\n"
                             . $weather->data[0]->air_tips;
                         foreach ($weather->data[0]->index as $index) {
-                            $contentStr .= $index->title . "\n" . $index->level . "\n" . $index->desc . "\n";
+                            $contentStr .= "\n" . $index->title . "\n" . $index->level . "\n" . $index->desc . "\n" . "\n";
                         }
                     }
                 }
