@@ -113,7 +113,7 @@ class Index
                     $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v1&city=永登');
                     if (!empty($file_contents)) {
                         $weather = json_decode($file_contents);
-                        $contentStr = $weather->cityid;
+                        $contentStr = '城市：'.$weather->city.'\n'.$weather->data[0]->air_tips;
 
                     }
                 }
