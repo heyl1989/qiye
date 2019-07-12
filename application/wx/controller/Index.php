@@ -118,9 +118,9 @@ class Index
                             . '现在温度：' . $weather->data[0]->tem . "\n"
                             . '今日温度：' . $weather->data[0]->tem2 . '~' . $weather->data[0]->tem1 . "\n"
                             . '天气状况：' . $weather->data[0]->wea . "\n"
-                            . $weather->data[0]->air_tips . "\n";
+                            . $weather->data[0]->air_tips . "\n" . "\n";
                         foreach ($weather->data[0]->index as $index) {
-                            $contentStr .= "\n" . $index->title . "\n" . $index->level . "\n" . $index->desc . "\n" . "\n";
+                            $contentStr .= $index->title . "\n" . $index->level . "\n" . $index->desc . "\n" . "\n";
                         }
                     }
                 }
