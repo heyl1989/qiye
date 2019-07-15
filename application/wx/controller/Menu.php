@@ -68,22 +68,29 @@ class Menu
     {
         //判断文件是否存在  存在取读取token  在判断是否到期
         if (file_exists('token.json')) {
-            $ken = file_get_contents('token.json');
-            $arr_token = json_decode($ken, true);
-            echo '缓存的Token'.$ken;
-            if (is_array($arr_token) && $arr_token['expire_time'] > time()) {
-                $token['access_token'] = $arr_token['access_token'];
+            $get_token = file_get_contents('token.json');
+            $token = json_decode($get_token);
+            echo '缓存的Token' . $get_token;
+            if (is_array($token) && $token->expires_in > time()) {
+
             } else {
-                $token = $this->getToken();
-                $token['expire_time'] = time() + 7000;
-                file_put_contents('token.json', json_encode($token));
+                $get_token = $this->getToken();
+                if (!empty($get_token)) {
+                    $token = json_decode($get_token);
+                    $token->expires_in = time() + 7000;
+                    file_put_contents('token.json', json_encode($token));
+                }
             }
         } else {
-            $token = $this->getToken();
-            $token['expire_time'] = time() + 7000;
-            file_put_contents('token.json', json_encode($token));
+            $get_token = $this->getToken();
+            if (!empty($get_token)) {
+                $token = json_decode($get_token);
+                $token->expires_in = time() + 7000;
+                file_put_contents('token.json', json_encode($token));
+            }
         }
-        return $token['access_token'];
+        echo $token->access_token;
+//        return $token->access_token;
     }
 
     private function getToken()
