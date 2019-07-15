@@ -70,10 +70,8 @@ class Menu
         if (file_exists('token.json')) {
             $get_token = file_get_contents('token.json');
             $token = json_decode($get_token);
-            echo '缓存的Token' . $get_token;
-            if (is_array($token) && $token->expires_in > time()) {
-
-            } else {
+            echo '缓存的Token' . $get_token . "\n";
+            if ($token->expires_in < time()) {
                 $get_token = $this->getToken();
                 if (!empty($get_token)) {
                     $token = json_decode($get_token);
