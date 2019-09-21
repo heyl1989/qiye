@@ -150,7 +150,7 @@ class Index
                             . $weather->air_tips . "\n";
                     }
                 }
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $file_contents);
                 echo $resultStr;
             } else {
                 echo "Input something...";
