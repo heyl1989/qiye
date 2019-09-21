@@ -130,7 +130,7 @@ class Index
                 if (strpos($keyword, "天气") !== false) {
 //                    $contentStr = '查询永登天气敬请期待！';
                     //接口地址：https://www.kancloud.cn/ccjin/yingq/603579
-                    $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v6&appid=32696743&appsecret=31HAJ1y1&city=%E6%B0%B8%E7%99%BB');
+                    $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v6&appid=32696743&appsecret=31HAJ1y1&city=永登');
                     if (!empty($file_contents)) {
                         $weather = json_decode($file_contents);
                         $contentStr = '城市：' . $weather->city . "\n"
