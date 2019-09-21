@@ -105,7 +105,7 @@ class Index
                 echo $resultStr;
             }
             if (!empty($keyword)) {
-                if(strpos($keyword, "商城") !== false){
+                if (strpos($keyword, "商城") !== false) {
                     $textTpl = "<xml>
 					<ToUserName><![CDATA[%s]]></ToUserName>
 					<FromUserName><![CDATA[%s]]></FromUserName>
@@ -130,18 +130,24 @@ class Index
                 if (strpos($keyword, "天气") !== false) {
 //                    $contentStr = '查询永登天气敬请期待！';
                     //接口地址：https://www.kancloud.cn/ccjin/yingq/603579
-                    $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v1&city=永登');
+                    $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v6&appid=32696743&appsecret=31HAJ1y1&city=%E6%B0%B8%E7%99%BB');
                     if (!empty($file_contents)) {
                         $weather = json_decode($file_contents);
                         $contentStr = '城市：' . $weather->city . "\n"
-                            . '日期：' . $weather->data[0]->date . "\n"
-                            . '现在温度：' . $weather->data[0]->tem . "\n"
-                            . '今日温度：' . $weather->data[0]->tem2 . '~' . $weather->data[0]->tem1 . "\n"
-                            . '天气状况：' . $weather->data[0]->wea . "\n"
-                            . $weather->data[0]->air_tips . "\n" . "\n";
-                        foreach ($weather->data[0]->index as $index) {
-                            $contentStr .= $index->title . "\n" . $index->level . "\n" . $index->desc . "\n" . "\n";
-                        }
+                            . '日期：' . $weather->data . "\n"
+                            . '现在温度：' . $weather->tem . "\n"
+                            . '今日温度：' . $weather->tem2 . '~' . $weather->tem1 . "\n"
+                            . '天气状况：' . $weather->wea . "\n"
+                            . '空气质量：' . $weather->air_level . "\n"
+                            . 'PM2.5：' . $weather->air_pm25 . "\n"
+                            . '能见度：' . $weather->visibility . "\n"
+                            . '气压hPa：' . $weather->pressure . "\n"
+                            . '湿度：' . $weather->humidity . "\n"
+                            . '风向：' . $weather->win . "\n"
+                            . '风速等级：' . $weather->win_speed . "\n"
+                            . '风速：' . $weather->win_meter . "\n"
+                            . '气象台更新时间：' . $weather->update_time . "\n"
+                            . $weather->air_tips . "\n";
                     }
                 }
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
