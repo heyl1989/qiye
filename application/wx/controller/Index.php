@@ -134,7 +134,7 @@ class Index
                     if (!empty($file_contents)) {
                         $weather = json_decode($file_contents);
                         $contentStr = '城市：' . $weather->city . "\n"
-                            . '日期：' . $weather->data . "\n"
+                            . '日期：' . $weather->date . "\n"
                             . '现在温度：' . $weather->tem . "\n"
                             . '今日温度：' . $weather->tem2 . '~' . $weather->tem1 . "\n"
                             . '天气状况：' . $weather->wea . "\n"
