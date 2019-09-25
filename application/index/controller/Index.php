@@ -22,7 +22,7 @@ class Index extends Base
         $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v6&appid=32696743&appsecret=31HAJ1y1&city=永登');
         $weather = json_decode($file_contents);
         $contentStr = '城市：' . $weather->city . "\n"
-            . '日期：' . $weather->data . "\n"
+            . '日期：' . $weather->date . "\n"
             . '现在温度：' . $weather->tem . "\n"
             . '今日温度：' . $weather->tem2 . '~' . $weather->tem1 . "\n"
             . '天气状况：' . $weather->wea . "\n"
