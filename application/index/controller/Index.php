@@ -21,6 +21,21 @@ class Index extends Base
     {
         $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v6&appid=32696743&appsecret=31HAJ1y1&city=永登');
         $weather = json_decode($file_contents);
-        return $weather->city;
+        $contentStr = '城市：' . $weather->city . "\n"
+            . '日期：' . $weather->data . "\n"
+            . '现在温度：' . $weather->tem . "\n"
+            . '今日温度：' . $weather->tem2 . '~' . $weather->tem1 . "\n"
+            . '天气状况：' . $weather->wea . "\n"
+            . '空气质量：' . $weather->air_level . "\n"
+            . 'PM2.5：' . $weather->air_pm25 . "\n"
+            . '能见度：' . $weather->visibility . "\n"
+            . '气压hPa：' . $weather->pressure . "\n"
+            . '湿度：' . $weather->humidity . "\n"
+            . '风向：' . $weather->win . "\n"
+            . '风速等级：' . $weather->win_speed . "\n"
+            . '风速：' . $weather->win_meter . "\n"
+            . '气象台更新时间：' . $weather->update_time . "\n"
+            . $weather->air_tips . "\n";
+        return $contentStr;
     }
 }

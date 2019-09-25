@@ -149,9 +149,9 @@ class Index
                             . '气象台更新时间：' . $weather->update_time . "\n"
                             . $weather->air_tips . "\n";
                     }
-                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                    echo $resultStr;
                 }
+                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                echo $resultStr;
             } else {
                 echo "Input something...";
             }
