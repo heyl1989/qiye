@@ -20,6 +20,7 @@ class Index extends Base
     public function wx()
     {
         $file_contents = file_get_contents('https://www.tianqiapi.com/api/?version=v6&appid=32696743&appsecret=31HAJ1y1&city=永登');
-        return $file_contents;
+        $weather = json_decode($file_contents);
+        return $weather->city;
     }
 }
