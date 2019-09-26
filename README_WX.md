@@ -28,7 +28,7 @@
 
 ## 1.微信界面交互接口和订阅事件推送
 * 注意模板中的中括号：
-````
+<br>``<ToUserName><![CDATA[%s]]></ToUserName>``
 
 
 ## 2.access_token的作用和使用方法

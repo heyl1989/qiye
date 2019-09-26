@@ -114,9 +114,9 @@ class Index
 					<ArticleCount>1</ArticleCount>
 					<Articles>
 					<item>
-					<Title><![CDATA[欢迎来到甘肃永登]]></Title> 
-					<Description><![CDATA[永登，古称令居、庄浪，隶属于甘肃省兰州市]]></Description>
-					<PicUrl><![CDATA[http://img1.imgtn.bdimg.com/it/u=2572839016,2682225406&fm=214&gp=0.jpg]]></PicUrl>
+					<Title><![CDATA[欢迎您的到来]]></Title> 
+					<Description><![CDATA[好礼品我们造,用心做好产品]]></Description>
+					<PicUrl><![CDATA[http://9.pic.pc6.com/up/2016-3/20163316657431.png]]></PicUrl>
 					<Url><![CDATA[http://47.94.234.255/qiye/public/]]></Url>
 					</item>
 					</Articles>
