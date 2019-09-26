@@ -125,8 +125,6 @@ class Index
                     echo $resultStr;
                     return;
                 }
-                $msgType = "text";
-                $contentStr = '您输入了：' . $keyword;
                 if (strpos($keyword, "天气") !== false) {
 //                    $contentStr = '查询永登天气敬请期待！';
                     //接口地址：https://www.kancloud.cn/ccjin/yingq/603579
@@ -149,9 +147,10 @@ class Index
                             . '气象台更新时间：' . $weather->update_time . "\n"
                             . $weather->air_tips . "\n";
                     }
+                    $msgType = "text";
+                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                    echo $resultStr;
                 }
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                echo $resultStr;
             } else {
                 echo "Input something...";
             }
