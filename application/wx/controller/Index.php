@@ -150,6 +150,27 @@ class Index
                     $msgType = "text";
                     $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                     echo $resultStr;
+                    return;
+                }
+                if (strpos($keyword, "段子") !== false) {
+                    $textTpl = "<xml>
+					<ToUserName><![CDATA[%s]]></ToUserName>
+					<FromUserName><![CDATA[%s]]></FromUserName>
+					<CreateTime>%s</CreateTime>
+					<MsgType><![CDATA[news]]></MsgType>
+					<ArticleCount>1</ArticleCount>
+					<Articles>
+					<item>
+					<Title><![CDATA[谁还不是个宝宝]]></Title> 
+					<Description><![CDATA[杠精]]></Description>
+					<PicUrl><![CDATA[http://wimg.spriteapp.cn/picture/2019/1022/5dae8fa453ad7_wpd.jpg]]></PicUrl>
+					<Url><![CDATA[http://uvideo.spriteapp.cn/video/2019/1022/5dae8fa453ad7_wpd.mp4]]></Url>
+					</item>
+					</Articles>
+					</xml>";
+                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time);
+                    echo $resultStr;
+                    return;
                 }
             } else {
                 echo "Input something...";
